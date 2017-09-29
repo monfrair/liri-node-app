@@ -8,3 +8,7 @@ var twitterKeys = {
 }
 
 module.exports = twitterKeys;
+
+
+var spotifyClient = 'cee40f14b4714e95a4942522c241ced1';
+var spotifySecret = '100ea93662344e14992be21b7a6d0b96';
