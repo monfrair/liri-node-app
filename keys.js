@@ -7,8 +7,7 @@ var twitterKeys = {
   access_token_secret: '4owxxJu4wozFVh6OLKw3PrDExxD1VYIt002oPTg3gFkUs',
 }
 
+
+
+
 module.exports = twitterKeys;
-
-
-var spotifyClient = 'cee40f14b4714e95a4942522c241ced1';
-var spotifySecret = '100ea93662344e14992be21b7a6d0b96';
