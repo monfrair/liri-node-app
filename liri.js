@@ -33,26 +33,22 @@ console.log(userValue);
 console.log(userChoice);
 
 
-
-
-
-
-if (userChoice === 'spotify-this-song' {
-        getSpotify();
+if (userChoice === 'spotify-this-song') {
+        getSpotify()
     } else if (userChoice === 'my-tweets') {
         fetchTweets();
     } else if (userChoice === 'movie-this') {
-        getMovie();
+        getMovie()
     } else if (userChoice === 'do-what-it-says') {
-        whatItSays();
+        whatItSays()
     } else if (userChoice === 'spotify-this-song') {
-        getSpotify();
+        getSpotify()
     } else if (userChoice === " ") {
-        console.log('please choose one');
+        console.log('please choose one')
     }
-};
 
 
+console.log(userChoice);
 //Function for finding songs on Spotify
 function getSpotify() {
     //If it doesn't find a song, default is The Sign by Ace of Base
@@ -63,7 +59,7 @@ function getSpotify() {
 
     //spotify variables for user account
     var spotifyThisSong = new spotify({
-        clientid: 'cee40f14b4714e95a4942522c241ced1',
+        id: 'cee40f14b4714e95a4942522c241ced1',
         secret: '100ea93662344e14992be21b7a6d0b96',
     });
 
@@ -74,9 +70,12 @@ function getSpotify() {
         limit: 20
     }, function (err, data) {
         if (err) {
-            console.log('Spotify Error occurred: ' + err);
-            return;
+            return console.log('Spotify Error occurred: ' + err);
+            
         }
+        
+        console.log(data);
+    });
 
         var songs = data.tracks.items;
         var data = []; //empty array to hold data
@@ -92,7 +91,7 @@ function getSpotify() {
         console.log(data);
         console.log(songs);
 
-    });
+    };
 
 
     //if(command === "my-tweets"){
@@ -127,4 +126,4 @@ function getSpotify() {
     //        }
     //    });
 
-};
+
