@@ -27,6 +27,7 @@ var nodeArgs = process.argv;
 
 // Command Instructions possibilities: my-tweets, spotify-this-song, movie-this, do-what-it-says
 var userChoice = process.argv[2];
+<<<<<<< HEAD
 var userValue = " "; //will this handle the whole name of the song if multiple words?
 
 for (i = 3; i < process.argv.length; i++) {
@@ -49,6 +50,35 @@ if (userChoice === 'spotify-this-song') {
     console.log('please choose one');
 }
 
+=======
+var userValue = process.argv[3]; //will this handle the whole name of the song if multiple words?
+
+for (i = 4; i < process.argv.length; i++) {
+    userValue += '+' + process.argv[i];
+}
+console.log(userValue);
+console.log(userChoice);
+
+
+
+
+
+
+if (userChoice === 'spotify-this-song' {
+        getSpotify();
+    } else if (userChoice === 'my-tweets') {
+        fetchTweets();
+    } else if (userChoice === 'movie-this') {
+        getMovie();
+    } else if (userChoice === 'do-what-it-says') {
+        whatItSays();
+    } else if (userChoice === 'spotify-this-song') {
+        getSpotify();
+    } else if (userChoice === " ") {
+        console.log('please choose one');
+    }
+};
+>>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
 
 
 //Function for finding songs on Spotify
@@ -61,6 +91,7 @@ function getSpotify() {
 
     //spotify variables for user account
     var spotifyThisSong = new spotify({
+<<<<<<< HEAD
         id: 'cee40f14b4714e95a4942522c241ced1',
         secret: '100ea93662344e14992be21b7a6d0b96',
     });
@@ -71,6 +102,14 @@ function getSpotify() {
 
 //    console.log(userValue);
     spotifyThisSong.search({
+=======
+        clientid: 'cee40f14b4714e95a4942522c241ced1',
+        secret: '100ea93662344e14992be21b7a6d0b96',
+    });
+
+
+    spotify.search({
+>>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
         type: 'track',
         query: userValue,
         limit: 20
@@ -102,6 +141,40 @@ function getSpotify() {
     });
 
 
+<<<<<<< HEAD
     
+=======
+    //if(command === "my-tweets"){
+    //          liri.myTweets().then(function(results){
+    //            resolve(results);
+    //          });
+    //        }
+    //        else if(command === "spotify-this-song"){
+    //          liri.spotifyThisSong(args).then(function(results){
+    //            resolve(results);
+    //          });
+    //        }
+    //        else if(command === "movie-this"){
+    //          liri.movieThis(args.replace(" ", "+")).then(function(results){
+    //            resolve(results);
+    //          });
+    //        }
+    //        else if(command === "do-what-it-says"){
+    //          //the recurse conditional makes sure that do-what-it-says isn't run from random.txt, which, I haven't tested it, but I think it would just be a neverending nightmare of recursion. So, that crisis is averted.
+    //          if(!recurse){
+    //            liri.doWhatItSays();
+    //            resolve("");
+    //          }
+    //          else{
+    //            resolve("ALERT: Command not executed; cannot call do-what-it-says from within random.txt");
+    //          }
+    //
+    //        }
+    //        else{
+    //          //if the command isn't recognized, the promise resolves with an alert for an unknown command. A reject may interfere with other commands being run, if it rejects in do-what-it-says
+    //          resolve("ALERT: Command not executed; could not recognize command");
+    //        }
+    //    });
+>>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
 
 };
