@@ -12,7 +12,7 @@ var dataKeys = require("./keys.js");
 var Twitter = require('twitter');
 var spotify = require("node-spotify-api");
 var request = require("request");
-
+var client = new Twitter(dataKeys.twitterKeys);
 
 
 ///capture user input, and inform user of what to type in.
@@ -93,32 +93,30 @@ function getSpotify() {
 ////////////////////////////////////////////////////////////////////////
 
 function readTweets() {
-    console.log(userValue + "code got to line 96");
-    console.log(userChoice + "WTF code line 97");
+    console.log(userValue + "  code got to line 96");
+    console.log(userChoice + "  WTF code line 97");
 
-    var client = new Twitter(dataKeys.twitterKeys);
+
 
 
     var params = {
         screen_name: 'monfrair',
         count: 20
     };
-    console.log(params + "  code line 105");
 
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
 
         if (!error) {
-                for (i=0; i < tweets.length; i++) {
-	            var tweetData = ('Number: ' + (i+1) + '\n' + tweets[i].created_at + '\n' + tweets[i].text + '\n');
-	            console.log(tweetData);
-	            console.log("-------------------------");
+
+                for (i= 0; i < tweets.length; i++) {
+	            console.log(tweets);
 	        }
 	    }
         else {
             console.log(error);
         }
 
-            console.log(userChoice + "WTF code line 118");
+            console.log(userChoice + "    WTF code line 118");
            
     });
 };
