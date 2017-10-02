@@ -109,7 +109,7 @@ function readTweets() {
         if (!error) {
 
                 for (i= 0; i < tweets.length; i++) {
-	            console.log(tweets);
+	            console.log(tweets[i].text);
 	        }
 	    }
         else {
@@ -145,18 +145,18 @@ function getMovie() {
             var data = [];
             var jsonData = JSON.parse(body);
 
-            data.push({
-                'Title: ': jsonData.Title,
-                'Year: ': jsonData.Year,
-                'Rated: ': jsonData.Rated,
-                'IMDB Rating: ': jsonData.imdbRating,
-                'Country: ': jsonData.Country,
-                'Language: ': jsonData.Language,
-                'Plot: ': jsonData.Plot,
-                'Actors: ': jsonData.Actors,
-                'Rotten Tomatoes Rating: ': jsonData.tomatoRating,
-                'Rotton Tomatoes URL: ': jsonData.tomatoURL,
-            });
+           
+                console.log('Title: ' + jsonData.Title);
+//                'Year: ': jsonData.Year,
+//                'Rated: ': jsonData.Rated,
+//                'IMDB Rating: ': jsonData.imdbRating,
+//                'Country: ': jsonData.Country,
+//                'Language: ': jsonData.Language,
+//                'Plot: ': jsonData.Plot,
+//                'Actors: ': jsonData.Actors,
+//                'Rotten Tomatoes Rating: ': jsonData.tomatoRating,
+//                'Rotton Tomatoes URL: ': jsonData.tomatoURL,
+//           
             console.log(data);
 
         }
