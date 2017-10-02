@@ -5,16 +5,14 @@
 // * do-what-it-says
 
 
-////#########  error is in the for loop, check it out and fix it /////////////
-
-
 // NPM Package for reading and writing files
 var fs = require('fs');
 
 var dataKeys = require("./keys.js");
-var twitter = require("twitter");
+var Twitter = require('twitter');
 var spotify = require("node-spotify-api");
 var request = require("request");
+
 
 
 ///capture user input, and inform user of what to type in.
@@ -27,89 +25,36 @@ var nodeArgs = process.argv;
 
 // Command Instructions possibilities: my-tweets, spotify-this-song, movie-this, do-what-it-says
 var userChoice = process.argv[2];
-<<<<<<< HEAD
 var userValue = " "; //will this handle the whole name of the song if multiple words?
 
 for (i = 3; i < process.argv.length; i++) {
     userValue += ' ' + process.argv[i];
-}
-//console.log(userValue);
-//console.log(userChoice);
-
-
-
-if (userChoice === 'spotify-this-song') {
-    getSpotify();
-} else if (userChoice === 'my-tweets') {
-    fetchTweets();
-} else if (userChoice === 'movie-this') {
-    getMovie();
-} else if (userChoice === 'do-what-it-says') {
-    whatItSays();
-} else   {
-    console.log('please choose one');
-}
-
-=======
-var userValue = process.argv[3]; //will this handle the whole name of the song if multiple words?
-
-for (i = 4; i < process.argv.length; i++) {
-    userValue += '+' + process.argv[i];
-}
-console.log(userValue);
-console.log(userChoice);
-
-
-
-
-
-
-if (userChoice === 'spotify-this-song' {
-        getSpotify();
-    } else if (userChoice === 'my-tweets') {
-        fetchTweets();
-    } else if (userChoice === 'movie-this') {
-        getMovie();
-    } else if (userChoice === 'do-what-it-says') {
-        whatItSays();
-    } else if (userChoice === 'spotify-this-song') {
-        getSpotify();
-    } else if (userChoice === " ") {
-        console.log('please choose one');
-    }
 };
->>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
+
+console.log(userValue + "34");
+console.log(userChoice + "35");
 
 
+
+
+////////////////////////////////////////////////////////////////////////
 //Function for finding songs on Spotify
+////////////////////////////////////////////////////////////////////////
+
 function getSpotify() {
     //If it doesn't find a song, default is The Sign by Ace of Base
-    if (userValue === undefined) {
-        userValue = 'The Sign';
+    if (userValue === " ") {
+        (userValue = 'The Sign');
     };
-
 
     //spotify variables for user account
     var spotifyThisSong = new spotify({
-<<<<<<< HEAD
         id: 'cee40f14b4714e95a4942522c241ced1',
         secret: '100ea93662344e14992be21b7a6d0b96',
     });
 
-    
-
-
-
-//    console.log(userValue);
+    //   Spotify search
     spotifyThisSong.search({
-=======
-        clientid: 'cee40f14b4714e95a4942522c241ced1',
-        secret: '100ea93662344e14992be21b7a6d0b96',
-    });
-
-
-    spotify.search({
->>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
         type: 'track',
         query: userValue,
         limit: 20
@@ -119,11 +64,10 @@ function getSpotify() {
             return;
         }
 
-        
         var getArtistNames = function (artist) {
-        return artist.name;
-    };
-        
+            return artist.name;
+        };
+
         var songs = data.tracks.items;
         var data = []; //empty array to hold data
 
@@ -136,45 +80,141 @@ function getSpotify() {
             });
         }
         console.log(data);
-        
 
     });
+};
+////////////////////////////////////////////////////////////////////////
+//end for finding songs on Spotify --working great
+////////////////////////////////////////////////////////////////////////   
 
 
-<<<<<<< HEAD
-    
-=======
-    //if(command === "my-tweets"){
-    //          liri.myTweets().then(function(results){
-    //            resolve(results);
-    //          });
-    //        }
-    //        else if(command === "spotify-this-song"){
-    //          liri.spotifyThisSong(args).then(function(results){
-    //            resolve(results);
-    //          });
-    //        }
-    //        else if(command === "movie-this"){
-    //          liri.movieThis(args.replace(" ", "+")).then(function(results){
-    //            resolve(results);
-    //          });
-    //        }
-    //        else if(command === "do-what-it-says"){
-    //          //the recurse conditional makes sure that do-what-it-says isn't run from random.txt, which, I haven't tested it, but I think it would just be a neverending nightmare of recursion. So, that crisis is averted.
-    //          if(!recurse){
-    //            liri.doWhatItSays();
-    //            resolve("");
-    //          }
-    //          else{
-    //            resolve("ALERT: Command not executed; cannot call do-what-it-says from within random.txt");
-    //          }
-    //
-    //        }
-    //        else{
-    //          //if the command isn't recognized, the promise resolves with an alert for an unknown command. A reject may interfere with other commands being run, if it rejects in do-what-it-says
-    //          resolve("ALERT: Command not executed; could not recognize command");
-    //        }
-    //    });
->>>>>>> 3a54283b091056c9279fd6f632bd28bafa538f1a
+////////////////////////////////////////////////////////////////////////
+//    twitter funtcion to get tweet data  not working at all getting undefined error on funtion
+////////////////////////////////////////////////////////////////////////
+
+function readTweets() {
+    console.log(userValue + "code got to line 96");
+    console.log(userChoice + "WTF code line 97");
+
+    var client = new Twitter(dataKeys.twitterKeys);
+
+
+    var params = {
+        screen_name: 'monfrair',
+        count: 20
+    };
+    console.log(params + "  code line 105");
+
+    client.get('statuses/user_timeline', params, function (error, tweets, response) {
+
+        if (!error) {
+                for (i=0; i < tweets.length; i++) {
+	            var tweetData = ('Number: ' + (i+1) + '\n' + tweets[i].created_at + '\n' + tweets[i].text + '\n');
+	            console.log(tweetData);
+	            console.log("-------------------------");
+	        }
+	    }
+        else {
+            console.log(error);
+        }
+
+            console.log(userChoice + "WTF code line 118");
+           
+    });
+};
+
+////////////////////////////////////////////////////////////////////////
+//     end of twitter function
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////////////////////////////////////////////////        
+//        movie function and code to get movie data
+////////////////////////////////////////////////////////////////////////       
+
+function getMovie() {
+
+    if (userValue === undefined) {
+        userValue = 'Mr Nobody';
+    }
+
+    var urlHit = "http://www.omdbapi.com/?t=" + userValue + "&y=&plot=full&tomatoes=true&r=json";
+
+    request(urlHit, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var data = [];
+            var jsonData = JSON.parse(body);
+
+            data.push({
+                'Title: ': jsonData.Title,
+                'Year: ': jsonData.Year,
+                'Rated: ': jsonData.Rated,
+                'IMDB Rating: ': jsonData.imdbRating,
+                'Country: ': jsonData.Country,
+                'Language: ': jsonData.Language,
+                'Plot: ': jsonData.Plot,
+                'Actors: ': jsonData.Actors,
+                'Rotten Tomatoes Rating: ': jsonData.tomatoRating,
+                'Rotton Tomatoes URL: ': jsonData.tomatoURL,
+            });
+            console.log(data);
+
+        }
+    });
+}
+////////////////////////////////////////////////////////////////////////        
+//      end of  movie function and code to get movie data
+////////////////////////////////////////////////////////////////////////       
+
+
+
+////////////////////////////////////////////////////////////////////////        
+//     do what it says function and code 
+////////////////////////////////////////////////////////////////////////       
+
+ function whatItSays() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        console.log(data);
+        writeToLog(data);
+        var dataArr = data.split(',')
+
+        if (dataArr.length == 2) {
+            pick(dataArr[0], dataArr[1]);
+        } else if (dataArr.length == 1) {
+            pick(dataArr[0]);
+        }
+
+    });
+}
+
+////////////////////////////////////////////////////////////////////////        
+//   end of  do what it says function and code 
+////////////////////////////////////////////////////////////////////////       
+
+////////////////////////////////////////////////////////////////////////
+//else if statements for user input
+////////////////////////////////////////////////////////////////////////
+console.log("code got to line 197");
+
+if (userChoice === 'spotify-this-song') {
+    getSpotify();
+
+} else if (userChoice === 'my-tweets') {
+    readTweets();
+    console.log("code got to line 204");
+} else if (userChoice === 'movie-this') {
+    getMovie();
+    console.log("code got to line 207");
+} else if (userChoice === 'do-what-it-says') {
+    whatItSays();
+} else {
+    console.log('please choose one');
 
 };
+
+
+////////////////////////////////////////////////////////////////////////
+//end of else if statements for user input
+////////////////////////////////////////////////////////////////////////
