@@ -73,14 +73,16 @@ function getSpotify() {
         var data = []; //empty array to hold data
 
         for (var i = 0; i < songs.length; i++) {
-            data.push({
-                'artist(s)': songs[i].artists.map(getArtistNames),
-                'song name: ': songs[i].name,
-                'preview song: ': songs[i].preview_url,
-                'album: ': songs[i].album.name,
-            });
-        }
-        console.log(data);
+
+            console.log(" ");
+            console.log('Result #: ' + [i]);
+            console.log('Song: ' + songs[i].name);
+            console.log('Artist(s) name  :' + songs[i].artists.map(getArtistNames));
+            console.log('Album name  :' + songs[i].album.name);
+            console.log('Url to Preview song:  ' + songs[i].preview_url);
+            console.log(" ");
+
+        };
 
     });
 };
@@ -139,11 +141,11 @@ function getMovie() {
     if (userValue === " ") {
         userValue = 'Mr Nobody';
     }
-   
+
     var urlHit = "http://www.omdbapi.com/?t=" + userValue + "&tomatoes=true&y=&plot=short&r=json&apikey=40e9cece";
 
     request(urlHit, function (error, response, body) {
-        
+
         if (!error && response.statusCode == 200) {
 
             var jsonData = JSON.parse(body);
