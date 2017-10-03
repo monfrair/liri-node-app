@@ -100,7 +100,7 @@ function readTweets() {
 
 
     var params = {
-        screen_name: 'monfrair',
+        screen_name: 'liriRutgers',
         count: 20
     };
 
