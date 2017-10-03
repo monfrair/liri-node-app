@@ -16,7 +16,7 @@ var client = new Twitter(dataKeys.twitterKeys);
 
 
 ///capture user input, and inform user of what to type in.
-console.log("Please Type my-tweets, spotify-this-song, movie-this, or do-what-it-says");
+//console.log("Please Type my-tweets, spotify-this-song, movie-this, or do-what-it-says");
 
 //take in all the command line arguments
 var nodeArgs = process.argv;
@@ -32,8 +32,8 @@ for (i = 3; i < process.argv.length; i++) {
     userValue += ' ' + process.argv[i];
 };
 
-console.log(userValue + "34");
-console.log(userChoice + "35");
+//console.log(userValue + "34");
+//console.log(userChoice + "35");
 
 
 
@@ -96,8 +96,8 @@ function getSpotify() {
 ////////////////////////////////////////////////////////////////////////
 
 function readTweets() {
-    console.log(userValue + "  code got to line 96");
-    console.log(userChoice + "  WTF code line 97");
+    console.log(userValue + "  ******code got to line 96");
+    console.log(userChoice + " ****** WTF code line 97");
 
 
 
@@ -107,20 +107,22 @@ function readTweets() {
         count: 20
     };
 
-    client.get('statuses/user_timeline', params, function (error, tweets, response) {
-        console.log(response.statusCode + " error code from line 109");
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+        console.log(response.statusCode + " *******   error code from line 111");
 
         if (!error && response.statusCode === 200) {
 
             for (i = 0; i < tweets.length; i++) {
-                console.log(tweets[i].text);
+                console.log("Tweet " + (i + 1) + " created on: " + tweets[i].created_at);
+                console.log("Tweet " + (i + 1) + " text: " + tweets[i].text);
+                console.log("--------------------------------------------------------------");
             }
         } else {
-            console.log(error);
+            console.log(error + ' ******code line 121');
 
         }
 
-        console.log(userChoice + "    WTF code line 118");
+        console.log(userChoice + "   ********** WTF code line 125");
 
     });
 };
@@ -213,7 +215,7 @@ if (userChoice === 'spotify-this-song') {
 } else if (userChoice === 'movie-this') {
     getMovie();
     console.log("code got to line 207");
-} else if (userChoice === 'do-what-it-says') {
+} else if (userChoice === 'what-it-says') {
     whatItSays();
 } else {
     console.log('please choose one');
