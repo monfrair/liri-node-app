@@ -77,8 +77,8 @@ function getSpotify() {
             console.log(" ");
             console.log('Result #: ' + [i]);
             console.log('Song: ' + songs[i].name);
-            console.log('Artist(s) name  :' + songs[i].artists.map(getArtistNames));
-            console.log('Album name  :' + songs[i].album.name);
+            console.log('Artist(s) name:  ' + songs[i].artists.map(getArtistNames));
+            console.log('Album name:  ' + songs[i].album.name);
             console.log('Url to Preview song:  ' + songs[i].preview_url);
             console.log(" ");
 
