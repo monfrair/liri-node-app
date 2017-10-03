@@ -7,5 +7,5 @@ var twitterKeys = {
   access_token_secret: 'j6GMOYkcKBr2Gw9WcVeIxThCZxACjxvy6OwZ9j07CtVET',
 }
 
-
+console.log(twitterKeys);
 module.exports = twitterKeys;

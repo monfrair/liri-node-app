@@ -21,7 +21,8 @@ console.log("Please Type my-tweets, spotify-this-song, movie-this, or do-what-it
 //take in all the command line arguments
 var nodeArgs = process.argv;
 
-
+console.log(client);
+console.log(Twitter + " code line 25");
 
 // Command Instructions possibilities: my-tweets, spotify-this-song, movie-this, do-what-it-says
 var userChoice = process.argv[2];
@@ -105,19 +106,20 @@ function readTweets() {
     };
 
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
+        console.log(response.statusCode + " error code from line 109");
 
-        if (!error) {
+        if (!error && response.statusCode === 200) {
 
-                for (i= 0; i < tweets.length; i++) {
-	            console.log(tweets[i].text);
-	        }
-	    }
-        else {
+            for (i = 0; i < tweets.length; i++) {
+                console.log(tweets[i].text);
+            }
+        } else {
             console.log(error);
+
         }
 
-            console.log(userChoice + "    WTF code line 118");
-           
+        console.log(userChoice + "    WTF code line 118");
+
     });
 };
 
@@ -129,41 +131,45 @@ function readTweets() {
 
 
 ////////////////////////////////////////////////////////////////////////        
-//        movie function and code to get movie data
+//        movie function and code to get movie data ---movie api call is working
 ////////////////////////////////////////////////////////////////////////       
 
 function getMovie() {
 
-    if (userValue === undefined) {
+    if (userValue === " ") {
         userValue = 'Mr Nobody';
     }
-
-    var urlHit = "http://www.omdbapi.com/?t=" + userValue + "&y=&plot=full&tomatoes=true&r=json";
+   
+    var urlHit = "http://www.omdbapi.com/?t=" + userValue + "&tomatoes=true&y=&plot=short&r=json&apikey=40e9cece";
 
     request(urlHit, function (error, response, body) {
+        
         if (!error && response.statusCode == 200) {
-            var data = [];
+
             var jsonData = JSON.parse(body);
 
-           
-                console.log('Title: ' + jsonData.Title);
-//                'Year: ': jsonData.Year,
-//                'Rated: ': jsonData.Rated,
-//                'IMDB Rating: ': jsonData.imdbRating,
-//                'Country: ': jsonData.Country,
-//                'Language: ': jsonData.Language,
-//                'Plot: ': jsonData.Plot,
-//                'Actors: ': jsonData.Actors,
-//                'Rotten Tomatoes Rating: ': jsonData.tomatoRating,
-//                'Rotton Tomatoes URL: ': jsonData.tomatoURL,
-//           
-            console.log(data);
+            console.log(' ');
+            console.log('Here is the info about the movie you requested');
+            console.log(' ');
+            console.log('Title: ' + jsonData.Title);
+            console.log('Year: ' + jsonData.Year);
+            console.log('IMDb Rating: ' + jsonData.imdbRating);
+            console.log('Country: ' + jsonData.Country);
+            console.log('Language: ' + jsonData.Language);
+            console.log('Plot: ' + jsonData.Plot);
+            console.log('Actors: ' + jsonData.Actors);
+            console.log('Rotten Tomatoes Rating: ' + jsonData.tomatoRating);
+            console.log('Rotten Tomatoes URL: ' + jsonData.tomatoURL);
+            console.log(' ');
+            console.log(' ');
 
+        } else {
+            console.log(error + "  api call did not work");
         }
     });
 }
 ////////////////////////////////////////////////////////////////////////        
-//      end of  movie function and code to get movie data
+//      end of  movie function and code to get movie data  ---movie api call is working
 ////////////////////////////////////////////////////////////////////////       
 
 
@@ -172,10 +178,10 @@ function getMovie() {
 //     do what it says function and code 
 ////////////////////////////////////////////////////////////////////////       
 
- function whatItSays() {
+function whatItSays() {
     fs.readFile("random.txt", "utf8", function (error, data) {
         console.log(data);
-        writeToLog(data);
+        console.log('got to line 186 in code for no entry test');
         var dataArr = data.split(',')
 
         if (dataArr.length == 2) {
