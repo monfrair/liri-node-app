@@ -88,7 +88,7 @@ function getSpotify() {
 
 
 ////////////////////////////////////////////////////////////////////////
-//    twitter funtcion to get tweet data  not working at all getting undefined error on funtion
+//    twitter funtcion to get tweet data - working all set
 ////////////////////////////////////////////////////////////////////////
 
 function readTweets() {
