@@ -14,15 +14,13 @@ var spotify = require("node-spotify-api");
 var request = require("request");
 var client = new Twitter(dataKeys.twitterKeys);
 
-
 ///capture user input, and inform user of what to type in.
 //console.log("Please Type my-tweets, spotify-this-song, movie-this, or do-what-it-says");
 
 //take in all the command line arguments
 var nodeArgs = process.argv;
 
-console.log(client);
-console.log(Twitter + " code line 25");
+
 
 // Command Instructions possibilities: my-tweets, spotify-this-song, movie-this, do-what-it-says
 var userChoice = process.argv[2];
@@ -31,10 +29,6 @@ var userValue = " "; //will this handle the whole name of the song if multiple w
 for (i = 3; i < process.argv.length; i++) {
     userValue += ' ' + process.argv[i];
 };
-
-//console.log(userValue + "34");
-//console.log(userChoice + "35");
-
 
 
 
@@ -74,14 +68,16 @@ function getSpotify() {
 
         for (var i = 0; i < songs.length; i++) {
 
+            console.log("-----------------------------------------");
+            console.log('Spotify data for requested song: ' + userValue);
             console.log(" ");
-            console.log('Result #: ' + [i]);
+            console.log('Result #: ' + [i + 1]);
             console.log('Song: ' + songs[i].name);
             console.log('Artist(s) name:  ' + songs[i].artists.map(getArtistNames));
             console.log('Album name:  ' + songs[i].album.name);
             console.log('Url to Preview song:  ' + songs[i].preview_url);
             console.log(" ");
-
+          
         };
 
     });
@@ -96,11 +92,6 @@ function getSpotify() {
 ////////////////////////////////////////////////////////////////////////
 
 function readTweets() {
-    console.log(userValue + "  ******code got to line 96");
-    console.log(userChoice + " ****** WTF code line 97");
-
-
-
 
     var params = {
         screen_name: 'liriRutgers',
@@ -108,22 +99,24 @@ function readTweets() {
     };
 
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
-        console.log(response.statusCode + " *******   error code from line 111");
+       
 
         if (!error && response.statusCode === 200) {
 
-            for (i = 0; i < tweets.length; i++) {
+            for (var i = 0; i < tweets.length; i++) {
+                console.log(" ");
+                console.log("Below is the requested Twitter data: ");
+                console.log(" ");
                 console.log("Tweet " + (i + 1) + " created on: " + tweets[i].created_at);
                 console.log("Tweet " + (i + 1) + " text: " + tweets[i].text);
                 console.log("--------------------------------------------------------------");
             }
         } else {
-            console.log(error + ' ******code line 121');
+            console.log(error + ' Twitter API call did not work.');
 
         }
 
-        console.log(userChoice + "   ********** WTF code line 125");
-
+       
     });
 };
 
@@ -204,17 +197,17 @@ function whatItSays() {
 ////////////////////////////////////////////////////////////////////////
 //else if statements for user input
 ////////////////////////////////////////////////////////////////////////
-console.log("code got to line 197");
+
 
 if (userChoice === 'spotify-this-song') {
     getSpotify();
 
 } else if (userChoice === 'my-tweets') {
     readTweets();
-    console.log("code got to line 204");
+    
 } else if (userChoice === 'movie-this') {
     getMovie();
-    console.log("code got to line 207");
+    
 } else if (userChoice === 'what-it-says') {
     whatItSays();
 } else {
