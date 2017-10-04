@@ -212,7 +212,7 @@ if (userChoice === 'spotify-this-song') {
 } else if (userChoice === 'what-it-says') {
     whatItSays();
 } else {
-    console.log('please choose one');
+    console.log('please choose one of the following: spotify-this-song -- my-tweets -- movie-this -- what-it-says--');
 
 };
 
