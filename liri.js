@@ -26,7 +26,7 @@ var nodeArgs = process.argv;
 var userChoice = process.argv[2];
 var userValue = " "; //will this handle the whole name of the song if multiple words?
 
-for (i = 3; i < process.argv.length; i++) {
+for (var i = 3; i < process.argv.length; i++) {
     userValue += ' ' + process.argv[i];
 };
 
@@ -77,7 +77,7 @@ function getSpotify() {
             console.log('Album name:  ' + songs[i].album.name);
             console.log('Url to Preview song:  ' + songs[i].preview_url);
             console.log(" ");
-          
+
         };
 
     });
@@ -98,8 +98,8 @@ function readTweets() {
         count: 20
     };
 
-    client.get('statuses/user_timeline', params, function(error, tweets, response) {
-       
+    client.get('statuses/user_timeline', params, function (error, tweets, response) {
+
 
         if (!error && response.statusCode === 200) {
 
@@ -116,7 +116,7 @@ function readTweets() {
 
         }
 
-       
+
     });
 };
 
@@ -178,15 +178,16 @@ function getMovie() {
 function whatItSays() {
     fs.readFile("random.txt", "utf8", function (error, data) {
         console.log(data);
-        console.log('got to line 186 in code for no entry test');
+        
         var dataArr = data.split(',')
+        userChoice = dataArr[0];
+        userValue = dataArr[1];
+        for (var i = 2; i < dataArr.length; i++) {
+            userValue = userValue + "+"
+            dataArr[i];
+        };
 
-        if (dataArr.length == 2) {
-            pick(dataArr[0], dataArr[1]);
-        } else if (dataArr.length == 1) {
-            pick(dataArr[0]);
-        }
-
+        getSpotify();
     });
 }
 
@@ -204,10 +205,10 @@ if (userChoice === 'spotify-this-song') {
 
 } else if (userChoice === 'my-tweets') {
     readTweets();
-    
+
 } else if (userChoice === 'movie-this') {
     getMovie();
-    
+
 } else if (userChoice === 'what-it-says') {
     whatItSays();
 } else {
